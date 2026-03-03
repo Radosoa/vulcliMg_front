@@ -1,0 +1,51 @@
+.app-layout {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+  background-attachment: fixed;
+}
+
+.main-container {
+  display: flex;
+  min-height: calc(100vh - 77px);
+}
+
+.content {
+  flex: 1;
+  padding: 2.5rem;
+  overflow-y: auto;
+  max-height: calc(100vh - 77px);
+  background: rgba(255, 255, 255, 0.02);
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Overlay mobile */
+.mobile-overlay {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    position: relative;
+  }
+  
+  .content {
+    padding: 1.5rem;
+    max-height: none;
+  }
+  
+  /* Overlay dark quand le menu est ouvert */
+  .mobile-overlay {
+    display: block;
+    position: fixed;
+    top: 77px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    z-index: 998;
+    animation: fadeIn 0.3s ease-out;
+    cursor: pointer;
+  }
+}

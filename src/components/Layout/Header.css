@@ -1,0 +1,145 @@
+.header {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  color: var(--text-primary);
+  padding: 1.25rem 2rem;
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Menu hamburger */
+.menu-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 1001;
+  border-radius: var(--radius-md);
+  transition: background var(--transition-base);
+}
+
+.menu-toggle:hover {
+  background: var(--gray-100);
+}
+
+.menu-toggle:active {
+  background: var(--gray-200);
+}
+
+.menu-toggle-icon {
+  display: block;
+  position: relative;
+  width: 24px;
+  height: 2px;
+  background: var(--gray-700);
+  margin: 0 auto;
+  border-radius: 2px;
+  transition: all var(--transition-base);
+}
+
+.menu-toggle-icon::before,
+.menu-toggle-icon::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background: var(--gray-700);
+  border-radius: 2px;
+  transition: all var(--transition-base);
+  left: 0;
+}
+
+.menu-toggle-icon::before {
+  top: -8px;
+}
+
+.menu-toggle-icon::after {
+  bottom: -8px;
+}
+
+/* Animation du hamburger vers X */
+.menu-toggle.active .menu-toggle-icon {
+  background: transparent;
+}
+
+.menu-toggle.active .menu-toggle-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+  background: var(--primary);
+}
+
+.menu-toggle.active .menu-toggle-icon::after {
+  bottom: 0;
+  transform: rotate(-45deg);
+  background: var(--primary);
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header-logo h1 {
+  margin: 0;
+  font-size: 1.625rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  letter-spacing: -0.02em;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.header-date {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  background: var(--gray-100);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--gray-200);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 1.5rem;
+  }
+  
+  .menu-toggle {
+    display: block;
+  }
+  
+  .header-logo h1 {
+    font-size: 1.125rem;
+  }
+  
+  .header-date {
+    display: none;
+  }
+}
