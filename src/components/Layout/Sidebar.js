@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
+import { FiBarChart2, FiSettings } from 'react-icons/fi';
 
 /**
  * Composant Sidebar - Barre latérale de navigation
@@ -23,7 +24,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
               onClick={handleLinkClick}
             >
-              <span className="nav-icon">📊</span>
+              <span className="nav-icon"><FiBarChart2 size={20} /></span>
               <span className="nav-text">Dashboard</span>
             </NavLink>
           </li>
@@ -33,7 +34,7 @@ const Sidebar = ({ isOpen, onClose }) => {
               className={({ isActive }) => isActive ? 'nav-link active' : 'nav-link'}
               onClick={handleLinkClick}
             >
-              <span className="nav-icon">⚙️</span>
+              <span className="nav-icon"><FiSettings size={20} /></span>
               <span className="nav-text">Administration</span>
             </NavLink>
           </li>

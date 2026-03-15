@@ -16,25 +16,19 @@ const Admin = () => {
 
   useEffect(() => {
     loadWeights();
+    // eslint-disable-next-line
   }, []);
 
   const loadWeights = async () => {
     setLoading(true);
     setError(null);
-    
     try {
       const data = await getBioWeights();
       setWeights(data);
     } catch (err) {
-      console.error('Erreur lors du chargement des poids:', err);
       setError('Impossible de charger les poids. Vérifiez que l\'API est accessible.');
-      // Initialiser avec des valeurs par défaut
-      setWeights({
-        bio1: 0.25,
-        bio5: 0.25,
-        bio12: 0.25,
-        bio15: 0.25
-      });
+      // Les valeurs par défaut sont déjà gérées dans getBioWeights
+      setWeights({ bio1: 0.25, bio5: 0.25, bio12: 0.25, bio15: 0.25 });
     } finally {
       setLoading(false);
     }
