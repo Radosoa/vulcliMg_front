@@ -62,7 +62,7 @@ const Register = () => {
         <div className="auth-logo" style={{ animationDelay: '0.1s' }}><FiGlobe size={38} color="#2563eb" /></div>
         <div className="auth-title">Créer un compte</div>
         <div className="auth-subtitle">Inscrivez-vous pour accéder à votre tableau de bord climatique</div>
-        {error && <div className="auth-error">{error}</div>}
+        
         <form className="auth-form" onSubmit={handleSubmit} autoComplete="on">
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <label style={{ marginBottom: 6 }}>Nom complet</label>
@@ -98,7 +98,7 @@ const Register = () => {
               onChange={e => setPassword(e.target.value)}
               onBlur={() => handleBlur('password')}
               required
-              placeholder="••••••••"
+              placeholder="Mot de passe"
               style={passwordTooShort && touched.password ? inputErrorStyle : {}}
             />
             {passwordTooShort && touched.password && (
@@ -116,7 +116,7 @@ const Register = () => {
               onChange={e => setPasswordConfirm(e.target.value)}
               onBlur={() => handleBlur('passwordConfirm')}
               required
-              placeholder="••••••••"
+              placeholder="Mot de passe"
               style={passwordMismatch && touched.passwordConfirm ? inputErrorStyle : {}}
             />
             {passwordMismatch && touched.passwordConfirm && (
@@ -129,6 +129,7 @@ const Register = () => {
             {loading ? 'Inscription...' : "S'inscrire"}
           </button>
         </form>
+        {error && <div className="auth-error">{error}</div>}
         <div style={{ marginTop: 18, fontSize: '1.01rem', color: '#555', textAlign: 'center' }}>
           Déjà un compte ?
           <Link className="auth-link" to="/login">Se connecter</Link>

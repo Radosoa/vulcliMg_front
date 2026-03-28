@@ -34,7 +34,6 @@ const Login = () => {
         <div className="auth-logo" style={{ animationDelay: '0.1s' }}><FiGlobe size={38} color="#2563eb" /></div>
         <div className="auth-title">Bienvenue !</div>
         <div className="auth-subtitle">Connectez-vous pour accéder à votre tableau de bord climatique</div>
-        {error && <div className="auth-error">{error}</div>}
         <form className="auth-form" onSubmit={handleSubmit} autoComplete="on">
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <label style={{ marginBottom: 6 }}>Email</label>
@@ -56,9 +55,10 @@ const Login = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              placeholder="••••••••"
+              placeholder="Mot de passe"
             />
           </div>
+            {error && <div className="auth-error">{error}</div>}
           <button className="auth-btn" type="submit" disabled={loading}>
             {loading ? 'Connexion...' : 'Se connecter'}
           </button>

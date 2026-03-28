@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getRegions } from '../../services/api';
 import { VULNERABILITY_CLASSES } from '../../utils/constants';
 import './FilterPanel.css';
+import { FiFilter } from 'react-icons/fi';
 
 /**
  * Composant FilterPanel - Panneau de filtres
@@ -49,7 +50,7 @@ const FilterPanel = ({ onFilterChange }) => {
 
   return (
     <div className="filter-panel">
-      <h3>🔍 Filtres</h3>
+      <h3><FiFilter size={20} /> Filtres</h3>
       
       <div className="filter-group">
         <label htmlFor="region-filter">Région</label>

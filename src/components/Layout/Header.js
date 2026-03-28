@@ -55,7 +55,7 @@ const Header = ({ onMenuToggle, isMobileMenuOpen }) => {
           <div className="header-logo">
             <h1 style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <FiGlobe size={26} style={{ color: '#2563eb', marginBottom: -3 }} />
-              Vulnérabilité Climatique
+              Vulcli MG
             </h1>
           </div>
         </div>

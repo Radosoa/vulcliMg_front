@@ -321,11 +321,7 @@ code {
 }
 
 .auth-error {
-  background: rgba(254, 238, 238, 0.97);
   color: var(--error);
-  border-left: 4px solid var(--error);
-  border-radius: var(--radius-lg);
-  padding: 0.95rem 1.1rem;
   margin-bottom: 0.5rem;
   font-size: 1.01rem;
   text-align: left;

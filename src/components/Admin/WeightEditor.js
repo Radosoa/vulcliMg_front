@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BIO_VARIABLES } from '../../utils/constants';
 import './WeightEditor.css';
+import { FiCheckCircle, FiAlertTriangle } from 'react-icons/fi';
 
 /**
  * Composant WeightEditor - Éditeur de poids des variables bioclimatiques
@@ -42,7 +43,7 @@ const WeightEditor = ({ weights, onWeightChange }) => {
           La somme des poids doit être égale à <strong>1.0</strong>
         </p>
         <div className={`total-weight ${isValidTotal ? 'valid' : 'invalid'}`}>
-          Total: {totalWeight.toFixed(3)} {isValidTotal ? '✓' : '⚠️'}
+          Total: {totalWeight.toFixed(3)} {isValidTotal ? <>&nbsp;<FiCheckCircle size={20} /> </>: <>&nbsp;<FiAlertTriangle size={20} /></>}
         </div>
       </div>
 
