@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getBioWeights, updateBioWeights, recalculateVulnerabilityIndex } from '../../services/api';
 import WeightEditor from './WeightEditor';
 import './Admin.css';
+import { FiSave, FiRefreshCw, FiInfo, FiCheckCircle,FiAlertTriangle } from 'react-icons/fi';
 
 /**
  * Composant Admin - Page d'administration
@@ -16,25 +17,19 @@ const Admin = () => {
 
   useEffect(() => {
     loadWeights();
+    // eslint-disable-next-line
   }, []);
 
   const loadWeights = async () => {
     setLoading(true);
     setError(null);
-    
     try {
       const data = await getBioWeights();
       setWeights(data);
     } catch (err) {
-      console.error('Erreur lors du chargement des poids:', err);
       setError('Impossible de charger les poids. Vérifiez que l\'API est accessible.');
-      // Initialiser avec des valeurs par défaut
-      setWeights({
-        bio1: 0.25,
-        bio5: 0.25,
-        bio12: 0.25,
-        bio15: 0.25
-      });
+      // Les valeurs par défaut sont déjà gérées dans getBioWeights
+      setWeights({ bio1: 0.25, bio5: 0.25, bio12: 0.25, bio15: 0.25 });
     } finally {
       setLoading(false);
     }
@@ -107,14 +102,14 @@ const Admin = () => {
 
       {error && (
         <div className="message error-message">
-          <p>⚠️ {error}</p>
+          <p><FiAlertTriangle size={20} /> {error}</p>
         </div>
       )}
 
       {message && (
         <div className={`message ${message.type}-message`}>
           <p>
-            {message.type === 'success' ? '✓' : 'ℹ️'} {message.text}
+            {message.type === 'success' ? <FiCheckCircle size={20} /> : <FiInfo size={20}/>} {message.text}
           </p>
         </div>
       )}
@@ -136,7 +131,7 @@ const Admin = () => {
               Sauvegarde en cours...
             </>
           ) : (
-            '💾 Sauvegarder les poids'
+            <><FiSave size={20} />Sauvegarder les poids</>
           )}
         </button>
 
@@ -151,13 +146,15 @@ const Admin = () => {
               Recalcul en cours...
             </>
           ) : (
-            '🔄 Recalculer l\'indice de vulnérabilité'
+            <><FiRefreshCw size={20} />Recalculer l'indice de vulnérabilité</>
           )}
         </button>
       </div>
 
       <div className="admin-info">
-        <h3>ℹ️ Information</h3>
+        <div className='titre-info'> <h3><FiInfo size={30}/> Information</h3></div>
+
+        
         <ul>
           <li>Les poids doivent totaliser exactement 1.0 (100%)</li>
           <li>Sauvegardez les poids avant de recalculer l'indice</li>

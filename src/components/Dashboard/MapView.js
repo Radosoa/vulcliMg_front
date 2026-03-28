@@ -1,9 +1,12 @@
 import React, { useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, WMSTileLayer } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { MAP_CONFIG, VULNERABILITY_CLASSES } from '../../utils/constants';
 import './MapView.css';
+
+const GEOSERVER_URL = 'http://localhost:8080/geoserver/wms';
+// const GEOSERVER_LAYER : 'vulcli:vulcli_raster';
 
 // Fix pour les icônes Leaflet avec React
 delete L.Icon.Default.prototype._getIconUrl;

@@ -1,5 +1,6 @@
 import React from 'react';
 import './StatsCards.css';
+import { FiMapPin, FiAlertTriangle, FiZap, FiCheckCircle } from 'react-icons/fi';
 
 /**
  * Composant StatsCards - Cartes statistiques
@@ -19,25 +20,25 @@ const StatsCards = ({ stats }) => {
     {
       title: 'Total Zones',
       value: stats.totalZones || 0,
-      icon: '📍',
+      icon: <FiMapPin size={22} color="#667eea" />, // Modern icon
       color: '#667eea'
     },
     {
       title: 'Vulnérabilité Élevée',
       value: stats.highVulnerability || 0,
-      icon: '⚠️',
+      icon: <FiAlertTriangle size={22} color="#F44336" />, // Modern icon
       color: '#F44336'
     },
     {
       title: 'Vulnérabilité Moyenne',
       value: stats.mediumVulnerability || 0,
-      icon: '⚡',
+      icon: <FiZap size={22} color="#FFC107" />, // Modern icon
       color: '#FFC107'
     },
     {
       title: 'Vulnérabilité Faible',
       value: stats.lowVulnerability || 0,
-      icon: '✅',
+      icon: <FiCheckCircle size={22} color="#4CAF50" />, // Modern icon
       color: '#4CAF50'
     }
   ];

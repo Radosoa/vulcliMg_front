@@ -6,6 +6,7 @@ import MapView from './MapView';
 import VulnerabilityBarChart from '../Charts/VulnerabilityBarChart';
 import VulnerabilityPieChart from '../Charts/VulnerabilityPieChart';
 import './Dashboard.css';
+import { FiAlertTriangle } from 'react-icons/fi';
 
 /**
  * Composant Dashboard - Page principale
@@ -64,7 +65,7 @@ const Dashboard = () => {
 
       {error && (
         <div className="error-message">
-          <p>⚠️ {error}</p>
+          <p><FiAlertTriangle size={20} /> {error}</p>
         </div>
       )}
 

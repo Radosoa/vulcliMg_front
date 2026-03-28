@@ -9,10 +9,32 @@ const apiClient = axios.create({
   },
 });
 
+// Intercepteur de requête pour ajouter le token automatiquement
+apiClient.interceptors.request.use(
+  (config) => {
+    try {
+      const token = localStorage.getItem('auth_token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+    } catch (e) {
+      // ignore
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 // Intercepteur pour gérer les erreurs globales
 apiClient.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Si le serveur retourne 401 on supprime le token local pour forcer la déconnexion
+    if (error?.response?.status === 401) {
+      try {
+        localStorage.removeItem('auth_token');
+      } catch (e) {}
+    }
     console.error('Erreur API:', error);
     return Promise.reject(error);
   }
@@ -63,20 +85,28 @@ export const getVulnerabilityStats = async () => {
 };
 
 /**
- * Service pour récupérer les poids des variables bioclimatiques
- * @returns {Promise} Poids actuels
+ * Service pour récupérer les poids des variables bioclimatiques de l'utilisateur authentifié
+ * @returns {Promise} Poids actuels ou valeurs par défaut si aucun poids n'existe
  */
 export const getBioWeights = async () => {
   try {
     const response = await apiClient.get('/bio-weights');
+    // Si l'API retourne null, undefined ou un objet vide, retourner les valeurs par défaut
+    if (!response.data || Object.keys(response.data).length === 0) {
+      return { bio1: 0.25, bio5: 0.25, bio12: 0.25, bio15: 0.25 };
+    }
     return response.data;
   } catch (error) {
+    // Si 404 ou aucune donnée, retourner les valeurs par défaut
+    if (error?.response?.status === 404) {
+      return { bio1: 0.25, bio5: 0.25, bio12: 0.25, bio15: 0.25 };
+    }
     throw error;
   }
 };
 
 /**
- * Service pour mettre à jour les poids des variables bioclimatiques
+ * Service pour mettre à jour les poids des variables bioclimatiques de l'utilisateur authentifié
  * @param {Object} weights - Nouveaux poids { bio1, bio5, bio12, bio15 }
  * @returns {Promise} Résultat de la mise à jour
  */
