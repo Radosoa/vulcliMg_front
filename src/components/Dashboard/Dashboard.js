@@ -3,8 +3,6 @@ import { getVulnerabilityZones, getVulnerabilityStats } from '../../services/api
 import StatsCards from './StatsCards';
 import FilterPanel from './FilterPanel';
 import MapView from './MapView';
-import VulnerabilityBarChart from '../Charts/VulnerabilityBarChart';
-import VulnerabilityPieChart from '../Charts/VulnerabilityPieChart';
 import './Dashboard.css';
 import { FiAlertTriangle } from 'react-icons/fi';
 
@@ -71,21 +69,9 @@ const Dashboard = () => {
 
       <StatsCards stats={stats} />
 
-      <FilterPanel onFilterChange={handleFilterChange} />
-
       <MapView zones={zones} />
 
-      <div className="charts-grid">
-        <div className="chart-container">
-          <h3>Distribution de la Vulnérabilité</h3>
-          <VulnerabilityBarChart data={stats} />
-        </div>
 
-        <div className="chart-container">
-          <h3>Répartition des Classes</h3>
-          <VulnerabilityPieChart data={stats} />
-        </div>
-      </div>
     </div>
   );
 };

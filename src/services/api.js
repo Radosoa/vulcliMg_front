@@ -52,6 +52,7 @@ export const getVulnerabilityZones = async (filters = {}) => {
     if (filters.vulnerability_class) params.append('vulnerability_class', filters.vulnerability_class);
     
     const response = await apiClient.get(`/vulnerability-zones?${params.toString()}`);
+    // console.log("API zones:", response.data);
     return response.data;
   } catch (error) {
     throw error;
@@ -131,5 +132,18 @@ export const recalculateVulnerabilityIndex = async () => {
     throw error;
   }
 };
+
+/**
+ * Service pour récupérer le PNG de vulnérabilité
+ * @returns {Promise} URL du PNG
+ */
+export const getVulnerabilityPng = async () => {
+  const response = await apiClient.get('/vulnerability-png', {
+    responseType: 'blob',
+  });
+  return URL.createObjectURL(response.data);
+};
+
+
 
 export default apiClient;

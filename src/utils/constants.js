@@ -3,9 +3,11 @@ export const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8
 
 // Classes de vulnérabilité
 export const VULNERABILITY_CLASSES = {
-  LOW: { label: 'Faible', color: '#4CAF50', value: 'low' },
-  MEDIUM: { label: 'Moyen', color: '#FFC107', value: 'medium' },
-  HIGH: { label: 'Élevé', color: '#F44336', value: 'high' }
+  VERY_LOW: { value: 'very_low', color: '#1a9850', label: 'Très faible' },
+  LOW:      { value: 'low',      color: '#a6d96a', label: 'Faible'      },
+  MEDIUM:   { value: 'medium',   color: '#ffffbf', label: 'Moyen'       },
+  HIGH:     { value: 'high',     color: '#fdae61', label: 'Élevé'       },
+  VERY_HIGH:{ value: 'very_high',color: '#d7191c', label: 'Très élevé'  },
 };
 
 // Configuration de la carte
